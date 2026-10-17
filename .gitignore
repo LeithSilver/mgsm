@@ -1,0 +1,44 @@
+# build output
+*.obj
+*.res
+/mgs_native/mgs_mobile.ico
+/build/
+/build-linux/
+/mgs_native/3ds/build/
+/mgs_native/vita/build/
+*.3dsx
+*.elf
+*.smdh
+/mgs_mobile.exe
+/mgs_mobile
+/*.dll
+/*.so*
+/android/local.properties
+/android/keystore.properties
+*.keystore
+*.jks
+/android/.gradle/
+/android/build/
+/android/app/build/
+/android/app/.cxx/
+# installed by setup from your own copy of the game, generated, or local
+/game/
+/game.setup/
+/textures/
+/screenshots/
+/ROM/
+/output/
+/MGS_Mobile_PC.zip
+mgs_mobile.ini
+*.log
+splash_*.png
+tools/out/
+__pycache__/
+CLAUDE.md
+# never commit game data or other people's tools
+/extracted_mgs/
+/EKA2L1/
+*.n-gage
+*.sis
+*.dz
+*.luc

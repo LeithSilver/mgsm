@@ -1,0 +1,5 @@
+// Android build of the MGS Mobile port (README.md §2). Run android/build.py rather than Gradle directly: it
+// fetches and builds the native dependencies first.
+plugins {
+    id 'com.android.application' version '8.5.0' apply false
+}

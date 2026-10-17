@@ -1,0 +1,30 @@
+Third-party software in this program
+====================================
+
+Unicorn Engine 2.1.4 (unicorn.dll) - CPU emulator
+  GNU General Public License v2 (unicorn-GPLv2.txt).
+  Source code: https://github.com/unicorn-engine/unicorn/tree/2.1.4
+
+SDL 3.4.18 (SDL3.dll; Android: libSDL3.so and its Java activity) - window, input, audio, gamepads
+  zlib license (SDL3.txt). https://github.com/libsdl-org/SDL
+
+stb_image 2.30, stb_image_write 1.16 - PNG reading and writing
+  Public domain (or MIT, at your choice). https://github.com/nothings/stb
+
+Dear ImGui 1.92.9b - settings menu (Android: imgui_impl_gles1.cpp is adapted from its OpenGL 2 backend)
+  MIT license (dear-imgui.txt). https://github.com/ocornut/imgui
+
+miniz 3.0.2 - zlib decompression, CRC-32
+  MIT license (miniz.txt). https://github.com/richgel999/miniz
+
+LZMA SDK 24.09 (LzmaDec) - LZMA decompression
+  Public domain. https://7-zip.org/sdk.html
+
+Gradle Wrapper (source tree only: android/gradlew, android/gradle/wrapper; a build tool, not part of the program)
+  Apache License 2.0. https://gradle.org
+
+Microsoft Visual C++ Runtime (msvcp140.dll, vcruntime140.dll, vcruntime140_1.dll)
+  Redistributed under the Visual Studio redistributable terms.
+
+Metal Gear Solid Mobile is (c) Konami Digital Entertainment, developed by Ideaworks3D. No game data is
+included; setup installs it from your own copy.

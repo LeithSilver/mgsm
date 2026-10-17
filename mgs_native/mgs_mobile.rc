@@ -1,0 +1,3 @@
+// Exe icon (Explorer, taskbar, console) and the window's class icons (main.cpp loads resource 1).
+// mgs_mobile.ico is generated from icon.png by tools/make_icon.py (build.bat runs it).
+1 ICON "mgs_mobile.ico"

@@ -1,0 +1,1 @@
+SDL 3.4.18 (https://github.com/libsdl-org/SDL/releases/tag/release-3.4.18), VC devel package: include/ + lib/x64/

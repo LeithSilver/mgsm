@@ -1,0 +1,63 @@
+plugins {
+    id 'com.android.application'
+}
+
+// Native dependencies (SDL 3 source, Unicorn source + static libraries per ABI), prepared by android/build.py
+// in MGS_ANDROID_DEPS (default ~/mgs-android-deps). Generated icons come from icon.png the same way.
+def depsDir = System.getenv('MGS_ANDROID_DEPS') ?: "${System.getProperty('user.home')}/mgs-android-deps"
+def sdlVersion = '3.4.18'
+def sdlDir = "${depsDir}/SDL3-${sdlVersion}".replace('\\', '/')
+def abis = (System.getenv('MGS_ANDROID_ABIS') ?: 'arm64-v8a').split(',')
+// Release signing key: android/keystore.properties + its keystore (private, never exported); debug key without them
+def keystoreProps = rootProject.file('keystore.properties')
+
+android {
+    namespace = 'org.mgsmobile.port'
+    compileSdk 33
+    ndkVersion = '24.0.8215888'
+    defaultConfig {
+        applicationId 'org.mgsmobile.port'
+        minSdkVersion 24
+        targetSdkVersion 33
+        versionCode 1
+        versionName '0.1'
+        externalNativeBuild {
+            cmake {
+                arguments '-DANDROID_STL=c++_static', "-DMGS_ANDROID_DEPS=${depsDir.replace('\\', '/')}",
+                          "-DMGS_SDL_DIR=${sdlDir}"
+                abiFilters(*abis)
+            }
+        }
+    }
+    signingConfigs {
+        release {
+            if (keystoreProps.exists()) {
+                def p = new Properties()
+                keystoreProps.withInputStream { p.load(it) }
+                storeFile rootProject.file(p['storeFile'])
+                storePassword p['storePassword']
+                keyAlias p['keyAlias']
+                keyPassword p['keyPassword']
+            }
+        }
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            signingConfig keystoreProps.exists() ? signingConfigs.release : signingConfigs.debug
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path 'jni/CMakeLists.txt'
+            version '3.22.1'
+        }
+    }
+    sourceSets.main {
+        java.srcDirs += "${sdlDir}/android-project/app/src/main/java"   // SDL's Java side, matching its C side
+        res.srcDirs += "${buildDir}/generated/mgs-icons"
+    }
+    lint {
+        abortOnError = false
+    }
+}
